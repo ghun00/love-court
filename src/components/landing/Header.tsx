@@ -44,7 +44,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -52,10 +52,10 @@ export function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${
         scrolled
-          ? "border-gray-black/20 bg-gray-black/60 backdrop-blur-md"
-          : "border-gray-black bg-transparent backdrop-blur-[2px]"
+          ? "border-gray-4 bg-white/95 shadow-sm backdrop-blur-lg"
+          : "border-gray-black bg-transparent"
       }`}
     >
       <div className="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-4 md:px-8 lg:px-[120px] lg:py-6">
@@ -69,7 +69,11 @@ export function Header() {
         >
           <Link
             href="#"
-            className="flex items-center justify-center gap-3 rounded-full px-6 py-3 font-bold text-gray-6 transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 sm:inline-flex"
+            className={`flex items-center justify-center gap-3 rounded-full px-6 py-3 font-bold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 sm:inline-flex ${
+              scrolled
+                ? "text-gray-black hover:bg-gray-5"
+                : "text-gray-6 hover:bg-white/10"
+            }`}
           >
             작가님이세요?
             <ExternalLinkIcon />
